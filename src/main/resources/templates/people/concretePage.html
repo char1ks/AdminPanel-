@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Информация о человеке</title>
+</head>
+<body class="bg-light">
+<div class="container mt-4">
+    <h1 class="text-center">Информация о человеке</h1>
+    <p>ID: <strong th:text="${concretePerson.getId()}"></strong></p>
+    <p>Имя: <strong th:text="${concretePerson.getName()}"></strong></p>
+    <p>Дата рождения: <strong th:text="${concretePerson.getBirth_date()}"></strong></p>
+    <a th:href="@{/people}" class="btn btn-secondary">Назад к списку</a>
+</div>
+</body>
+</html>

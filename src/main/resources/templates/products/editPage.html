@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Редактирование продукта</title>
+</head>
+<body class="bg-light">
+<div class="container mt-4">
+    <h1 class="text-center">Редактировать продукт</h1>
+    <form th:action="@{/product/{id}(id=${productId}})}" th:method="PATCH" th:object="${concreteProduct}}">
+        <div class="form-group">
+            <label for="nomination">Наименование:</label>
+            <input type="text" id="nomination" name="nomination" th:value="${concreteProduct.getNomination()}" required class="form-control">
+        </div>
+        <button type="submit" class="btn btn-warning">Сохранить изменения</button>
+    </form>
+    <a th:href="@{/product}" class="btn btn-secondary mt-3">Назад к списку</a>
+</div>
+</body>
+</html>

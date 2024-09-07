@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор продуктов</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Центрируем текст внутри контейнера */
+        }
+        h1 {
+            text-align: center;
+        }
+        .product {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .select-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .select-button:hover {
+            background-color: #218838;
+        }
+        .empty-message {
+            color: #dc3545; /* Красный цвет для сообщения об ошибке */
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Выберите продукты</h1>
+    <div th:if="${#lists.isEmpty(avaliableProductList)}">
+        <label class="empty-message">Похоже тут пусто :L</label>
+        <form th:action="@{/product}" method="get"> <!-- Укажите нужный путь для кнопки -->
+            <button type="submit" class="select-button">Продолжить</button>
+        </form>
+    </div>
+    <div th:unless="${#lists.isEmpty(avaliableProductList)}">
+        <th:block th:each="product : ${avaliableProductList}">
+            <div class="product">
+                <h3 th:text="${product.getNomination()}">Название продукта</h3>
+                <form th:action="@{/product/{productId}/{personId}(productId=${product.getId()}, personId=${personId})}" th:method="PATCH">
+                    <button type="submit" class="select-button">Выбрать</button>
+                </form>
+            </div>
+        </th:block>
+        <form th:action="@{/people}" method="get"> <!-- Укажите нужный путь для кнопки -->
+            <button type="submit" class="select-button">Пропустить выбор-></button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Добавление нового человека</title>
+</head>
+<body class="bg-light">
+<div class="container mt-4">
+    <h1 class="text-center">Добавить нового человека</h1>
+    <form th:action="@{/people}" th:method="POST" th:object="${newPerson}">
+        <div class="form-group">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="birth_date">Дата рождения:</label>
+            <input type="date" id="birth_date" name="birth_date" required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">Добавить</button>
+    </form>
+    <a th:href="@{/people}" class="btn btn-secondary mt-3">Назад к списку</a>
+</div>
+</body>
+</html>

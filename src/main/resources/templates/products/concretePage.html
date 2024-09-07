@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Информация о продукте</title>
+</head>
+<body class="bg-light">
+<div class="container mt-4">
+    <h1 class="text-center">Информация о продукте</h1>
+    <p>ID: <strong th:text="${concreteProduct.getId()}"></strong></p>
+    <p>Наименование: <strong th:text="${concreteProduct.getNomination()}"></strong></p>
+
+    <h2 class="mt-4">Информация о покупателе</h2>
+    <div th:if="${personWhosBought != null}">
+        <p>ID покупателя: <strong th:text="${personWhosBought.getId()}"></strong></p>
+        <p>Имя покупателя: <strong th:text="${personWhosBought.getName()}"></strong></p>
+        <p>Дата рождения: <strong th:text="${#dates.format(personWhosBought.getBirth_date(), 'yyyy-MM-dd')}"></strong></p>
+    </div>
+    <div th:if="${personWhosBought == null}">
+        <p>Информация о покупателе недоступна.</p>
+    </div>
+
+    <a th:href="@{/product}" class="btn btn-secondary">Назад к списку</a>
+</div>
+</body>
+</html>
